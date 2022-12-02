@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+
+{% block extend_head %}
+
+    <title>Sign In</title>
+
+{% endblock %}
+
+
+
+{% block content %}
+
+    <h2 class="header">Sign in</h3>
+
+    <div class="container">
+
+        <form action="/sign-in" method="post" id="signinform">
+            {% csrf_token %}
+
+            <label for="username">Username</label>
+            {{ form.username }}
+
+            <label for="password">Password</label>
+            {{ form.password }}
+
+            <label class="check-container">Show Passwords
+                <input type="checkbox" onclick="showPword()">
+                <span class="checkmark"></span>
+            </label>
+
+            <button type="submit">Sign in</button>
+
+        </form>
+
+    </div>
+
+{% endblock %}
+
+
+
+{% block extend_footer %}
+
+{% endblock %}

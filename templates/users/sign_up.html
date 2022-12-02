@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extend_head %}
+
+    <script src="https://www.google.com/recaptcha/api.js?render={{recaptcha_site_key}}"></script>
+
+    
+    <title>Sign Up</title>
+
+
+{% endblock %}
+
+{% block content %}
+
+    <h2 class="header">Sign up</h3>
+
+    <div class="container">
+
+        <form action="/sign-up" id="signupform" method="post">
+            {% csrf_token %}
+
+            <label for="first_name">First Name</label>
+            {{ form.first_name }}
+
+            <label for="last_name">Last Name</label>
+            {{ form.last_name }}
+
+            <label for="username">Username</label>
+            {{ form.username }}
+
+            <label for="password1">Password</label>
+            {{ form.password1 }}
+
+            <label for="password2">Confirm Password</label>
+            {{ form.password2 }}
+
+            {{ form.token }}
+
+            <label class="check-container">Show Passwords
+                <input type="checkbox" onclick="showPword()">
+                <span class="checkmark"></span>
+            </label>
+
+            <button type="submit">Sign Up</button>
+
+        </form>
+
+    </div>
+
+{% endblock %}
+
+{% block extend_footer %}
+
+    <script type="text/javascript">
+
+        // Create a variable that can be use in capstone.js
+        var recaptcha_site_key = '{{ recaptcha_site_key | safe }}'
+
+    </script>
+
+{% endblock %}

@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extend_head %}
+
+    <title>Addresses</title>
+
+{% endblock %}
+
+{% block content %}
+
+  <h2 class="header" style="background-color: rgb(114, 255, 0);">Addresses</h3>
+
+  <div class="container">
+    
+    <h4>Addresses <a href="{% url 'vault:create_address' %}"><img class="add-icon" src="{% static 'img/add-icon.png' %}" alt=""></a></h4>
+    {% if addresses %}
+
+      <div class="cards-container">
+
+        {% for address in addresses %}
+
+            <div class="card" id="address-card" style="width: 18rem; margin: 10px;">
+                <div class="card-img-container" id="address-cap">
+                    <img class="card-img-top" src="{% static 'img/address.png' %}" alt="Card image cap">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">{{  address.name }}</h5>
+                </div>
+                <div class="card-body">
+                    <div class="card-link-container">
+                        <a href="{% url 'vault:detail_address' address.id %}" class="link-container card-view-btn card-link">View</a>
+                        <a href="{% url 'vault:update_address' address.id %}" class="link-container card-edit-btn card-link">Edit</a>
+                        <a href="{% url 'vault:delete_address' address.id %}" class="link-container card-delete-btn card-link">Delete</a>
+                    </div>
+                </div>
+            </div>
+
+        {% endfor %}
+    
+      </div>
+
+    {% else %}
+        <p>You have not registered addresses</p>
+    {% endif %}
+
+  </div>
+
+{% endblock %}
+
+{% block extend_footer %}
+    <script type="text/javascript">
+
+        let hoveredSrc = "{% static 'img/add-icon-hovered.png' %}";
+        let unhoveredSrc = "{% static 'img/add-icon.png' %}";
+
+    </script>
+
+    <script type="text/javascript" src="{% static 'toggle_add_icon.js' %}"></script>
+{% endblock %}

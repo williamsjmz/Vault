@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extend_head %}
+
+    <title>Create {{ item_name }}</title>
+
+{% endblock %}
+
+{% block content %}
+
+  {% if update %}
+    {% if item_name == 'password' %}
+
+      <h2 class="header" style="background-color: tomato;">Edit {{ item_name }}</h3>
+
+    {% elif item_name == 'note' %}
+
+      <h2 class="header" style="background-color: rgb(255, 237, 0);">Edit {{ item_name }}</h3>
+
+    {% elif item_name == 'address' %}
+
+      <h2 class="header" style="background-color: rgb(114, 255, 0);">Edit {{ item_name }}</h3>
+
+    {% elif item_name == 'payment card' %}
+
+      <h2 class="header" style="background-color: rgb(74, 71, 255);">Edit {{ item_name }}</h3>
+
+    {% elif item_name == 'bank account' %}
+
+      <h2 class="header" style="background-color: rgb(234, 71, 255);">Edit {{ item_name }}</h3>
+
+    {% endif %}
+  {% else %}
+    {% if item_name == 'password' %}
+
+      <h2 class="header" style="background-color: tomato;">Create {{ item_name }}</h3>
+
+    {% elif item_name == 'note' %}
+
+      <h2 class="header" style="background-color: rgb(255, 237, 0);">Create {{ item_name }}</h3>
+
+    {% elif item_name == 'address' %}
+
+      <h2 class="header" style="background-color: rgb(114, 255, 0);">Create {{ item_name }}</h3>
+
+    {% elif item_name == 'payment card' %}
+
+      <h2 class="header" style="background-color: rgb(74, 71, 255);">Create {{ item_name }}</h3>
+
+    {% elif item_name == 'bank account' %}
+
+      <h2 class="header" style="background-color: rgb(234, 71, 255);">Create {{ item_name }}</h3>
+
+    {% endif %}
+  {% endif %}
+
+  <div class="container">
+
+    <form action="{{ action_url }}" id="{{ item_form_id }}" method="post">
+        {% csrf_token %}
+
+        {{ form }}
+
+        {% if item_name == 'password' and not update %}
+
+          <a id="generate-password-link" onclick="generateSecurePassword();">Generate secure password</a>
+
+          <label class="check-container">Show Passwords
+            <input type="checkbox" onclick="showPword()">
+            <span class="checkmark"></span>
+          </label>
+        {% endif %}
+
+        {% if update %}
+          <button type="submit">Update {{ item_name }}</button>
+        {% else %}
+          <button type="submit">Create {{ item_name }}</button>
+        {% endif %}
+
+    </form>
+
+  </div>
+
+{% endblock %}
+
+{% block extend_footer %}
+
+  <script>
+
+    function generateSecurePassword() {
+      fetch('/password/generator/', {
+        method: 'POST',
+        body: JSON.stringify({
+          "lower": true,
+          "upper": true,
+          "numbers": true,
+          "symbols": true,
+          "length": "12"
+        })
+      })
+      .then(response => response.json())
+      .then(result => {
+        let password = document.querySelector('#password-container');
+        password.value = result["password"];
+      })
+    }
+
+  </script>
+
+{% endblock %}

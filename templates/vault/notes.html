@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extend_head %}
+
+    <title>Notes</title>
+
+{% endblock %}
+
+{% block content %}
+
+  <h2 class="header" style="background-color: rgb(255, 237, 0);">Notes</h3>
+
+  <div class="container">
+    
+    <h4>Notes <a href="{% url 'vault:create_note' %}"><img class="add-icon" src="{% static 'img/add-icon.png' %}" alt=""></a></h4>
+    {% if notes %}
+
+      <div class="cards-container">
+        {% for note in notes %}
+
+            <div class="card" id="note-card" style="width: 18rem; margin: 10px;">
+                <div class="card-img-container" id="note-cap">
+                    <img class="card-img-top" src="{% static 'img/note.png' %}" alt="Card image cap">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">{{  note.name }}</h5>
+                </div>
+                <div class="card-body">
+                    <div class="card-link-container">
+                        <a href="{% url 'vault:detail_note' note.id %}" class="link-container card-view-btn card-link">View</a>
+                        <a href="{% url 'vault:update_note' note.id %}" class="link-container card-edit-btn card-link">Edit</a>
+                        <a href="{% url 'vault:delete_note' note.id %}" class="link-container card-delete-btn card-link">Delete</a>
+                    </div>
+                </div>
+            </div>
+
+        {% endfor %}
+      </div> 
+
+    {% else %}
+        <p>You have not registered notes</p>
+    {% endif %}
+
+  </div>
+
+{% endblock %}
+
+{% block extend_footer %}
+    <script type="text/javascript">
+
+        let hoveredSrc = "{% static 'img/add-icon-hovered.png' %}";
+        let unhoveredSrc = "{% static 'img/add-icon.png' %}";
+
+    </script>
+
+    <script type="text/javascript" src="{% static 'toggle_add_icon.js' %}"></script>
+{% endblock %}

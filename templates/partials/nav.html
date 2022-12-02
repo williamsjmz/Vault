@@ -1,0 +1,73 @@
+{% if request.user.is_authenticated %}
+<ul class="sidenav">
+  {% if request.path == "/" %}
+  <li><a class="active" href="{% url 'users:account' %}">User Account</a></li>
+  {% else %}
+  <li><a href="{% url 'users:account' %}">User Account</a></li>
+  {% endif %}
+
+  {% if request.path == "/password/" %}
+  <li><a class="active" href="{% url 'password:password_generator' %}">Password generator</a></li>
+  {% else %}
+  <li><a href="{% url 'password:password_generator' %}">Password generator</a></li>
+  {% endif %}
+
+  {% if request.path == "/vault/" %}
+  <li><a class="active" href="{% url 'vault:all-items' %}">All Items</a></li>
+  {% else %}
+  <li><a href="{% url 'vault:all-items' %}">All Items</a></li>
+  {% endif %}
+
+  {% if request.path == "/vault/passwords" %}
+  <li><a class="active" href="{% url 'vault:passwords' %}">Passwords</a></li>
+  {% else %}
+  <li><a href="{% url 'vault:passwords' %}">Passwords</a></li>
+  {% endif %}
+
+  {% if request.path == "/vault/notes" %}
+  <li><a class="active" href="{% url 'vault:notes' %}">Notes</a></li>
+  {% else %}
+  <li><a href="{% url 'vault:notes' %}">Notes</a></li>
+  {% endif %}
+
+  {% if request.path == "/vault/addresses" %}
+  <li><a class="active" href="{% url 'vault:addresses' %}">Addresses</a></li>
+  {% else %}
+  <li><a href="{% url 'vault:addresses' %}">Addresses</a></li>
+  {% endif %}
+
+  {% if request.path == "/vault/payment-cards" %}
+  <li><a class="active" href="{% url 'vault:payment-cards' %}">Payment Cards</a></li>
+  {% else %}
+  <li><a href="{% url 'vault:payment-cards' %}">Payment Cards</a></li>
+  {% endif %}
+
+  {% if request.path == "/vault/bank-accounts" %}
+  <li><a class="active" href="{% url 'vault:bank-accounts' %}">Bank Accounts</a></li>
+  {% else %}
+  <li><a href="{% url 'vault:bank-accounts' %}">Bank Accounts</a></li>
+  {% endif %}
+
+  {% if "sign-out" in request.path %}
+  <li><a class="active" href="{% url 'users:sign-out' %}">Sign Out</a></li>
+  {% else %}
+  <li><a href="{% url 'users:sign-out' %}">Sign Out</a></li>
+  {% endif %}
+  
+</ul>
+{% else %}
+<ul class="sidenav">
+
+  {% if "sign-in" in request.path %}
+  <li><a class="active" href="{% url 'users:sign-in' %}">Sign In</a></li>
+  {% else %}
+  <li><a href="{% url 'users:sign-in' %}">Sign In</a></li>
+  {% endif %}
+  
+  {% if "sign-up" in request.path %}
+  <li><a class="active" href="{% url 'users:sign-up' %}">Sign Up</a></li>
+  {% else %}
+  <li><a href="{% url 'users:sign-up' %}">Sign Up</a></li>
+  {% endif %}
+</ul>
+{% endif %}

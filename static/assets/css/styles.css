@@ -1,0 +1,9 @@
+a {
+  text-decoration: none;
+  border-radius: 3px;
+  margin: 5px;
+  width: 9px;
+  background: rgba(255,255,255,0);
+  border: 0.3px solid #cccccc ;
+}
+

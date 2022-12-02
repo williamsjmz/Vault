@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extend_head %}
+
+  <title>User Account</title>
+
+{% endblock %}
+
+{% block content %}
+
+  <h2 class="header">User Account</h3>
+
+  <div class="container">
+
+    <h3>User account details</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>
+            Field
+          </th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Username</td>
+          <td>{{ request.user.username }}</td>
+        </tr>
+        <tr>
+          <td>Name</td>
+          <td>{{ request.user.first_name|title }} {{ request.user.last_name|title }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+{% endblock %}
+
+{% block extend_footer %}
+
+{% endblock %}

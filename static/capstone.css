@@ -1,0 +1,547 @@
+body {font-family: 'Open Sans', Verdana;}
+* {box-sizing: border-box;}
+
+body {
+  margin: 0;
+}
+
+body, html, .map-container {
+  height: 100%;
+}
+
+#map-route {
+  height: 75%;
+  }
+
+.logo {
+  width: 150px;
+  padding: 8px;
+}
+
+
+ul.sidenav {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 20%;
+  background-color: #3c4a54ff;
+  position: fixed;
+  height: 100%;
+  overflow: auto;
+}
+
+ul.sidenav li a {
+  display: block;
+  color: white;
+  padding: 8px 16px;
+  text-decoration: none;
+  height: fit-content;
+  padding: 15px;
+}
+
+ul.sidenav li a.active {
+  background-color: #22303aff;
+  color: white;
+}
+
+ul.sidenav li a:hover:not(.active) {
+  background-color: #22303aff;
+  color: white;
+}
+
+.div-container {
+
+  margin-left: 20%;
+  padding: 0px;
+  height: 1000px;
+  background-color: #efefefff;
+}
+
+@media screen and (max-width: 900px) {
+  ul.sidenav {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  
+  ul.sidenav li a {
+    float: left;
+    padding: 15px;
+  }
+  
+  .div-container {margin-left: 0;}
+}
+
+@media screen and (max-width: 400px) {
+  ul.sidenav li a {
+    text-align: center;
+    float: none;
+  }
+}
+
+input[type=text], input[type=email], input[type=password], select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+
+
+::-webkit-input-placeholder { /* Edge */
+  color: #3c4a54ff;
+  font-family: 'Open Sans', Verdana;
+}
+
+:-ms-input-placeholder { /* Internet Explorer */
+  color: #3c4a54ff;
+  font-family: 'Open Sans', Verdana;
+}
+
+::placeholder {
+  color: #3c4a54ff;
+  font-family: 'Open Sans', Verdana;
+}
+
+select.selection option
+{
+  color: #3c4a54ff;
+  font-family: 'Open Sans', Verdana;
+}
+
+input, select{
+  color: #3c4a54ff;
+  font-family: 'Open Sans', Verdana;
+
+}
+
+/* The container */
+.check-container {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.check-container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 15px;
+  width: 15px;
+  background-color: #ccc;
+}
+
+/* On mouse-over, add a grey background color */
+.check-container:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a green background */
+.check-container input:checked ~ .checkmark {
+  background-color: #3c4a54ff;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.check-container:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.check-container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.check-container .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #3c4a54ff;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #3c4a54ff;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+button[type=submit] {
+  background-color: #3c4a54ff;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button[type=submit]:hover {
+  background-color: #22303aff;;
+}
+
+.container {
+  border-radius: 5px;
+  background-color: #fff;
+  padding: 20px;
+}
+
+table {
+  font-family: 'Open Sans', Verdana;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+table td, table th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+table tr:hover {background-color: #ddd;}
+
+table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #3c4a54ff;
+  color: white;
+}
+
+.selected {
+  background-color: #22303aff;
+  color: #FFF;
+}
+
+#payment-form {
+  width: 100%;
+}
+
+/* style inputs and link buttons */
+input, select,
+.btn {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 4px;
+  margin: 5px 0;
+  opacity: 0.85;
+  display: inline-block;
+  font-size: 17px;
+  line-height: 20px;
+  text-decoration: none; /* remove underline from anchors */
+}
+
+input:hover,
+.btn:hover {
+  opacity: 1;
+}
+
+.header {
+  color: white;
+  background-color: #2e6bd1ff;
+  text-align: center;
+  padding: 18.72px;
+  margin: 0px;
+}
+
+#password-card, #note-card, #address-card, #payment-card-card, #bank-account-card {
+  transition: box-shadow 0.3s ease;
+  width: 30% !important;
+  margin: 10px !important;
+  float: left;
+  box-shadow: 0 0.1rem 0.4rem rgba(0,0,0,0.3);
+}
+
+#password-card:hover {
+  box-shadow: 0.5rem 0.5rem 0.3rem rgba(255,99,71,0.3);
+}
+
+#note-card:hover {
+  box-shadow: 0.5rem 0.5rem 0.3rem rgba(255, 237, 71, 0.3);
+}
+
+#address-card:hover {
+  box-shadow: 0.5rem 0.5rem 0.3rem rgba(114, 255, 71, 0.3);
+}
+
+#payment-card-card:hover {
+  box-shadow: 0.5rem 0.5rem 0.3rem rgba(74, 71, 255, 0.3);
+}
+
+#bank-account-card:hover {
+  box-shadow: 0.5rem 0.5rem 0.3rem rgba(234, 71, 255, 0.3);
+}
+
+.card-img, .card-img-bottom, .card-img-top {
+  width: 75px !important;
+}
+
+.card img {
+  display:block;
+  margin:auto;
+}
+
+.card-img-container {
+  border-radius: 5px 5px 0px 0px;
+}
+
+#password-cap {
+  background-color: tomato;
+}
+
+#note-cap {
+  background-color: rgb(255, 237, 71);
+}
+
+#address-cap {
+  background-color: rgb(114, 255, 71);
+}
+
+#payment-card-cap {
+  background-color: rgb(74, 71, 255);
+}
+
+#bank-account-cap {
+  background-color: rgb(234, 71, 255);
+}
+
+.card {
+  border-radius: 5px;
+}
+
+.card-body {
+  text-align: center;
+  padding: 0px;
+  height: 50px;
+}
+
+.card-link {
+  text-align: center;
+  float: left;
+  width: 33.33%;
+  height: 100%;
+  margin: 0px !important;
+  padding: 15px;
+  border: 0.1px rgba(0,0,0,0.1) solid;
+}
+
+.card-title {
+  height: 100%;
+  margin: 0px;
+  padding: 10px;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  color: white;
+}
+
+.card-view-btn:hover {
+  background-color: yellowgreen;
+  cursor: pointer;
+}
+
+.card-edit-btn:hover {
+  background-color: skyblue;
+  cursor: pointer;
+}
+
+.card-delete-btn:hover {
+  background-color: tomato;
+  cursor: pointer;
+}
+
+.card-link-container {
+  float: left;
+  width: 100%;
+  height: 100%;
+  font-size: 12px;
+}
+
+.cards-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+@media screen and (max-width: 767px) {
+  .card {
+      width: 45% !important;
+  }
+}
+
+a.password-a, a.note-a, a.address-a, a.payment-card-a, a.bank-account-a {
+  border-radius: 3px;
+}
+
+a.password-a:hover {
+  cursor: pointer !important;
+  color: white !important;
+  background-color: tomato !important;
+}
+
+a.note-a:hover {
+  cursor: pointer !important;
+  color: white !important;
+  background-color: rgba(255, 237, 0) !important;
+}
+
+a.address-a:hover {
+  cursor: pointer !important;
+  color: white !important;
+  background-color: rgba(114, 255, 0) !important;
+}
+
+a.payment-card-a:hover {
+  cursor: pointer !important;
+  color: white !important;
+  background-color: rgb(74, 71, 255) !important;
+}
+
+a.bank-account-a:hover {
+  cursor: pointer !important;
+  color: white !important;
+  background-color: rgb(234, 71, 255) !important;
+}
+
+.confirm-delete-btn:hover {
+  cursor: pointer;
+}
+
+#no-delete-btn {
+  color: white;
+}
+
+#no-delete-btn:hover {
+  background-color: rgb(151, 12, 12) !important;
+}
+
+#yes-delete-btn:hover {
+  background-color: rgb(22, 126, 64) !important;
+}
+
+#delete-container {
+  text-align: center;
+}
+
+#password-generator-container {
+  width: 327px;
+  margin: 50px auto;
+  height: fit-content;
+  border: 0.3px solid #ccc;
+  padding: 15px;
+  text-align: left;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 1px 1px 5px #ccc;
+}
+
+.form-check-input, .form-check-label {
+  width: fit-content;
+  display: inline;
+  margin: 15px 5px;
+}
+
+.password-generator-header {
+  text-align: center !important;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+#generate-password-link {
+  color: tomato;
+  margin-bottom: 20px !important;
+  display: block;
+}
+
+#generate-password-link:hover {
+  color: rgb(206, 81, 59);
+  cursor: pointer;
+  text-decoration: underline;
+}

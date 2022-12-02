@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block extend_head %}
+
+    <title>Delete {{ item }}</title>
+
+{% endblock %}
+
+
+{% block content %}
+
+    {% if item == "password" %}
+
+        <h2 class="header" style="background-color: tomato;">Delete {{ item }}</h3>
+
+    {% elif item == "note" %}
+
+        <h2 class="header" style="background-color: rgb(255, 237, 0);">Delete {{ item }}</h3>
+
+    {% elif item == "address" %}
+
+        <h2 class="header" style="background-color: rgb(114, 255, 0);">Delete {{ item }}</h3>
+
+    {% elif item == "payment card" %}
+
+        <h2 class="header" style="background-color: rgb(74, 71, 255);">Delete {{ item }}</h3>
+
+    {% elif item == "bank account" %}
+
+        <h2 class="header" style="background-color: rgb(234, 71, 255);">Delete {{ item }}</h3>
+
+    {% endif %}
+
+    <section class="position-relative py-4 py-xl-5">
+        <div id="delete-container" class="container position-relative">
+            <h5 class="text-center mb-4">Are you sure you want to delete the {{ item }} called "{{ object.name }}"?</h5>
+            <form method="post">
+                {% csrf_token %}
+                <div style="text-align: center;">
+                    <div style="width: 35%;display: inline-block;"><button id="yes-delete-btn" class="btn btn-primary d-block w-100 confirm-delete-btn" type="submit" style="display: inline;margin-right: 10px;background: rgb(27,157,80);border-color: rgb(27,157,80);">Yes</button></div>
+                    
+                    <div style="width: 35%;display: inline-block;">
+                    
+                        {% if item == "password" %}
+
+                            <a href="{% url 'vault:passwords' %}"><button id="no-delete-btn" class="btn btn-primary d-block w-100 confirm-delete-btn" type="button" style="display: inline;margin: auto;margin-left: 10px;background: rgb(197,12,12);border-color: rgb(197,12,12);">No</button></a>
+                    
+                        {% elif item == "note" %}
+                    
+                            <a href="{% url 'vault:notes' %}"><button id="no-delete-btn" class="btn btn-primary d-block w-100 confirm-delete-btn" type="button" style="display: inline;margin: auto;margin-left: 10px;background: rgb(197,12,12);border-color: rgb(197,12,12);">No</button></a>
+                    
+                        {% elif item == "address" %}
+                    
+                            <a href="{% url 'vault:addresses' %}"><button id="no-delete-btn" class="btn btn-primary d-block w-100 confirm-delete-btn" type="button" style="display: inline;margin: auto;margin-left: 10px;background: rgb(197,12,12);border-color: rgb(197,12,12);">No</button></a>
+                    
+                        {% elif item == "payment card" %}
+                    
+                            <a href="{% url 'vault:payment-cards' %}"><button id="no-delete-btn" class="btn btn-primary d-block w-100 confirm-delete-btn" type="button" style="display: inline;margin: auto;margin-left: 10px;background: rgb(197,12,12);border-color: rgb(197,12,12);">No</button></a>
+                        
+                        {% elif item == "bank account" %}
+                    
+                            <a href="{% url 'vault:bank-accounts' %}"><button id="no-delete-btn" class="btn btn-primary d-block w-100 confirm-delete-btn" type="button" style="display: inline;margin: auto;margin-left: 10px;background: rgb(197,12,12);border-color: rgb(197,12,12);">No</button></a>
+                    
+                        {% endif %}
+                    
+                    </div>
+                    
+                </div>
+            </form>
+        </div>
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+{% endblock %}
+
+
+{% block extend_footer %}
+
+{% endblock %}

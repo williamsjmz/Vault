@@ -1,0 +1,253 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block extend_head %}
+
+    <title>Detail item</title>
+
+{% endblock %}
+
+
+{% block content %}
+
+    {% if password %}
+
+        <h2 class="header" style="background-color: tomato;">Password details</h3>
+
+    {% elif note %}
+
+        <h2 class="header" style="background-color: rgb(255, 237, 0);">Note details</h3>
+
+    {% elif address %}
+
+        <h2 class="header" style="background-color: rgb(114, 255, 0);">Address details</h3>
+
+    {% elif payment_card %}
+
+        <h2 class="header" style="background-color: rgb(74, 71, 255);">Payment Card details</h3>
+
+    {% elif bank_account %}
+
+        <h2 class="header" style="background-color: rgb(234, 71, 255);">Bank Account details</h3>
+
+    {% endif %}
+
+    <section>
+
+        <div class="container" style="margin: auto;padding: 12px;">
+            <form style="padding: 15px;box-shadow: 1px 1px 3px rgba(33,37,41,0.3);">
+
+                {% if password %}
+
+
+                    <label class="form-label" style="font-weight: bold;display: block;">Site URL</label>
+                    <input class="form-control" id="password-url" type="text" style="width: 85%;display: inline;margin-bottom: 15px;" value="{{ password.url }}" readonly>
+                    <a href="{{ password.url }}" class="password-a" target="_blank" style="background: rgba(255,255,255,0);text-align: center;font-weight: bold;font-size: 15px;padding: 12.5px;color: #000000;border: 0.3px solid #cccccc ;">Go</a>
+
+                    <label class="form-label" style="font-weight: bold;display: block;">Name</label>
+                    <input class="form-control" id="password-name" type="text" style="width: 85%;display: inline;margin-bottom: 15px;" value="{{ password.name }}" readonly>
+                    <a onclick="copyToClipBoard('password-name');" class="password-a" style="background: rgba(255,255,255,0);text-align: center;font-weight: bold;font-size: 15px;padding: 12.5px;color: #000000;border: 0.3px solid #cccccc ;">Copy</a>
+
+                    <label class="form-label" style="font-weight: bold;display: block;">Email</label>
+                    <input class="form-control" id="password-email" type="text" style="width: 85%;display: inline;margin-bottom: 15px;" value="{{ password.email }}" readonly>
+                    <a onclick="copyToClipBoard('password-email');" class="password-a" style="background: rgba(255,255,255,0);text-align: center;font-weight: bold;font-size: 15px;padding: 12.5px;color: #000000;border: 0.3px solid #cccccc ;">Copy</a>
+
+                    <label class="form-label" style="font-weight: bold;display: block;">Password</label>
+                    <input class="form-control" id="password-password" type="text" style="width: 85%;display: inline;margin-bottom: 15px;" value="{{ password.password }}" readonly>
+                    <a onclick="copyToClipBoard('password-password');" class="password-a" style="background: rgba(255,255,255,0);text-align: center;font-weight: bold;font-size: 15px;padding: 12.5px;color: #000000;border: 0.3px solid #cccccc ;">Copy</a>
+            
+                {% elif note %}
+
+                    <label class="form-label" style="font-weight: bold;display: block;">Name</label>
+                    <input class="form-control" id="note-name" type="text" style="width: 85%;display: inline;margin-bottom: 15px;" value="{{ note.name }}" readonly>
+                    <a onclick="copyToClipBoard('note-name');" class="note-a" style="background: rgba(255,255,255,0);text-align: center;font-weight: bold;font-size: 15px;padding: 12.5px;color: #000000;border: 0.3px solid #cccccc ;">Copy</a>
+
+                    <label class="form-label" style="display: block;font-weight: bold;">Body</label>
+                    <textarea id="note-body" class="form-control" style="width: 85%;height: 100px;overflow: auto;">{{ note.body }}</textarea>
+                    <a onclick="copyToClipBoard('note-body');" class="note-a" style="width: 68.41px !important; height: 45px !important; margin: 0px !important; background: rgba(255,255,255,0);text-align: center;font-weight: bold;font-size: 15px;padding: 9px;color: #000000;border: 0.3px solid #cccccc;display: block;width: 55px;height: 40px;margin: 0;margin-top: 5px;">Copy</a>
+            
+                {% elif address %}
+
+                <label class="form-label" style="font-weight: bold;display: block;">Name</label>
+                <input class="form-control" id="address-name" type="text" style="width: 85%;display: inline;margin-bottom: 15px;" value="{{ address.name }}" readonly>
+                <a onclick="copyToClipBoard('address-name');" class="address-a" style="background: rgba(255,255,255,0);text-align: center;font-weight: bold;font-size: 15px;padding: 12.5px;color: #000000;border: 0.3px solid #cccccc ;">Copy</a>
+
+
+                <label class="form-label" style="font-weight: bold;display: block;">Title</label>
+                <input class="form-control" id="address-title" type="text" style="width: 85%;display: inline;margin-bottom: 15px;" value="{{ address.title }}" readonly>
+                <a onclick="copyToClipBoard('address-title');" class="address-a" style="background: rgba(255,255,255,0);text-align: center;font-weight: bold;font-size: 15px;padding: 12.5px;color: #000000;border: 0.3px solid #cccccc ;">Copy</a>
+
+
+                <label class="form-label" style="font-weight: bold;display: block;">First name</label>
+                <input class="form-control" id="address-first-name" type="text" style="width: 85%;display: inline;margin-bottom: 15px;" value="{{ address.first_name }}" readonly>
+                <a onclick="copyToClipBoard('address-first-name');" class="address-a" style="background: rgba(255,255,255,0);text-align: center;font-weight: bold;font-size: 15px;padding: 12.5px;color: #000000;border: 0.3px solid #cccccc ;">Copy</a>
+
+
+                <label class="form-label" style="font-weight: bold;display: block;">Middle name</label>
+                <input class="form-control" id="address-middle-name" type="text" style="width: 85%;display: inline;margin-bottom: 15px;" value="{{ address.middle_name }}" readonly>
+                <a onclick="copyToClipBoard('address-middle-name');" class="address-a" style="background: rgba(255,255,255,0);text-align: center;font-weight: bold;font-size: 15px;padding: 12.5px;color: #000000;border: 0.3px solid #cccccc ;">Copy</a>
+
+
+                <label class="form-label" style="font-weight: bold;display: block;">Last name</label>
+                <input class="form-control" id="address-last-name" type="text" style="width: 85%;display: inline;margin-bottom: 15px;" value="{{ address.last_name }}" readonly>
+                <a onclick="copyToClipBoard('address-last-name');" class="address-a" style="background: rgba(255,255,255,0);text-align: center;font-weight: bold;font-size: 15px;padding: 12.5px;color: #000000;border: 0.3px solid #cccccc ;">Copy</a>
+
+                <label class="form-label" style="font-weight: bold;display: block;">Gender</label>
+                <input class="form-control" id="address-gender" type="text" style="width: 85%;display: inline;margin-bottom: 15px;" value="{{ address.gender }}" readonly>
+                <a onclick="copyToClipBoard('address-gender');" class="address-a" style="background: rgba(255,255,255,0);text-align: center;font-weight: bold;font-size: 15px;padding: 12.5px;color: #000000;border: 0.3px solid #cccccc ;">Copy</a>
+
+                <label class="form-label" style="font-weight: bold;display: block;">Birthday</label>
+                <input class="form-control" id="address-birthday" type="text" style="width: 85%;display: inline;margin-bottom: 15px;" value="{{ address.birthday }}" readonly>
+                <a onclick="copyToClipBoard('address-birthday');" class="address-a" style="background: rgba(255,255,255,0);text-align: center;font-weight: bold;font-size: 15px;padding: 12.5px;color: #000000;border: 0.3px solid #cccccc ;">Copy</a>
+
+                <label class="form-label" style="font-weight: bold;display: block;">Address 1</label>
+                <input class="form-control" id="address-address-1" type="text" style="width: 85%;display: inline;margin-bottom: 15px;" value="{{ address.address1 }}" readonly>
+                <a onclick="copyToClipBoard('address-address-1');" class="address-a" style="background: rgba(255,255,255,0);text-align: center;font-weight: bold;font-size: 15px;padding: 12.5px;color: #000000;border: 0.3px solid #cccccc ;">Copy</a>
+
+                <label class="form-label" style="font-weight: bold;display: block;">Address 2</label>
+                <input class="form-control" id="address-address-2" type="text" style="width: 85%;display: inline;margin-bottom: 15px;" value="{{ address.address2 }}" readonly>
+                <a onclick="copyToClipBoard('address-address-2');" class="address-a" style="background: rgba(255,255,255,0);text-align: center;font-weight: bold;font-size: 15px;padding: 12.5px;color: #000000;border: 0.3px solid #cccccc ;">Copy</a>
+
+                <label class="form-label" style="font-weight: bold;display: block;">Address 3</label>
+                <input class="form-control" id="address-address-3" type="text" style="width: 85%;display: inline;margin-bottom: 15px;" value="{{ address.address3 }}" readonly>
+                <a onclick="copyToClipBoard('address-address-3');" class="address-a" style="background: rgba(255,255,255,0);text-align: center;font-weight: bold;font-size: 15px;padding: 12.5px;color: #000000;border: 0.3px solid #cccccc ;">Copy</a>
+
+                <label class="form-label" style="font-weight: bold;display: block;">City</label>
+                <input class="form-control" id="address-city" type="text" style="width: 85%;display: inline;margin-bottom: 15px;" value="{{ address.city }}" readonly>
+                <a onclick="copyToClipBoard('address-city');" class="address-a" style="background: rgba(255,255,255,0);text-align: center;font-weight: bold;font-size: 15px;padding: 12.5px;color: #000000;border: 0.3px solid #cccccc ;">Copy</a>
+
+                <label class="form-label" style="font-weight: bold;display: block;">County</label>
+                <input class="form-control" id="address-county" type="text" style="width: 85%;display: inline;margin-bottom: 15px;" value="{{ address.county }}" readonly>
+                <a onclick="copyToClipBoard('address-county');" class="address-a" style="background: rgba(255,255,255,0);text-align: center;font-weight: bold;font-size: 15px;padding: 12.5px;color: #000000;border: 0.3px solid #cccccc ;">Copy</a>
+
+                <label class="form-label" style="font-weight: bold;display: block;">State</label>
+                <input class="form-control" id="address-state" type="text" style="width: 85%;display: inline;margin-bottom: 15px;" value="{{ address.state }}" readonly>
+                <a onclick="copyToClipBoard('address-state');" class="address-a" style="background: rgba(255,255,255,0);text-align: center;font-weight: bold;font-size: 15px;padding: 12.5px;color: #000000;border: 0.3px solid #cccccc ;">Copy</a>
+
+                <label class="form-label" style="font-weight: bold;display: block;">ZIP Code</label>
+                <input class="form-control" id="address-zip" type="text" style="width: 85%;display: inline;margin-bottom: 15px;" value="{{ address.zip }}" readonly>
+                <a onclick="copyToClipBoard('address-zip');" class="address-a" style="background: rgba(255,255,255,0);text-align: center;font-weight: bold;font-size: 15px;padding: 12.5px;color: #000000;border: 0.3px solid #cccccc ;">Copy</a>
+                
+                <label class="form-label" style="font-weight: bold;display: block;">Country</label>
+                <input class="form-control" id="address-country" type="text" style="width: 85%;display: inline;margin-bottom: 15px;" value="{{ address.country }}" readonly>
+                <a onclick="copyToClipBoard('address-country');" class="address-a" style="background: rgba(255,255,255,0);text-align: center;font-weight: bold;font-size: 15px;padding: 12.5px;color: #000000;border: 0.3px solid #cccccc ;">Copy</a>
+
+                <label class="form-label" style="font-weight: bold;display: block;">Email</label>
+                <input class="form-control" id="address-email" type="text" style="width: 85%;display: inline;margin-bottom: 15px;" value="{{ address.email }}" readonly>
+                <a onclick="copyToClipBoard('address-email');" class="address-a" style="background: rgba(255,255,255,0);text-align: center;font-weight: bold;font-size: 15px;padding: 12.5px;color: #000000;border: 0.3px solid #cccccc ;">Copy</a>
+
+                <label class="form-label" style="font-weight: bold;display: block;">Phone</label>
+                <input class="form-control" id="address-phone" type="text" style="width: 85%;display: inline;margin-bottom: 15px;" value="{{ address.phone }}" readonly>
+                <a onclick="copyToClipBoard('address-phone');" class="address-a" style="background: rgba(255,255,255,0);text-align: center;font-weight: bold;font-size: 15px;padding: 12.5px;color: #000000;border: 0.3px solid #cccccc ;">Copy</a>
+            
+                {% elif payment_card %}
+
+                    <label class="form-label" style="font-weight: bold;display: block;">Name</label>
+                    <input class="form-control" id="payment-card-name" type="text" style="width: 85%;display: inline;margin-bottom: 15px;" value="{{ payment_card.name }}" readonly>
+                    <a onclick="copyToClipBoard('payment-card-name');" class="payment-card-a" style="background: rgba(255,255,255,0);text-align: center;font-weight: bold;font-size: 15px;padding: 12.5px;color: #000000;border: 0.3px solid #cccccc ;">Copy</a>
+
+                    <label class="form-label" style="font-weight: bold;display: block;">Name on card</label>
+                    <input class="form-control" id="payment-card-name-on-card" type="text" style="width: 85%;display: inline;margin-bottom: 15px;" value="{{ payment_card.name_on_card }}" readonly>
+                    <a onclick="copyToClipBoard('payment-card-name-on-card');" class="payment-card-a" style="background: rgba(255,255,255,0);text-align: center;font-weight: bold;font-size: 15px;padding: 12.5px;color: #000000;border: 0.3px solid #cccccc ;">Copy</a>
+
+                    <label class="form-label" style="font-weight: bold;display: block;">Type</label>
+                    <input class="form-control" id="payment-card-type" type="text" style="width: 85%;display: inline;margin-bottom: 15px;" value="{{ payment_card.type }}" readonly>
+                    <a onclick="copyToClipBoard('payment-card-type');" class="payment-card-a" style="background: rgba(255,255,255,0);text-align: center;font-weight: bold;font-size: 15px;padding: 12.5px;color: #000000;border: 0.3px solid #cccccc ;">Copy</a>
+
+                    <label class="form-label" style="font-weight: bold;display: block;">Account number</label>
+                    <input class="form-control" id="payment-card-number" type="text" style="width: 85%;display: inline;margin-bottom: 15px;" value="{{ payment_card.number }}" readonly>
+                    <a onclick="copyToClipBoard('payment-card-number');" class="payment-card-a" style="background: rgba(255,255,255,0);text-align: center;font-weight: bold;font-size: 15px;padding: 12.5px;color: #000000;border: 0.3px solid #cccccc ;">Copy</a>
+
+                    <label class="form-label" style="font-weight: bold;display: block;">Security code</label>
+                    <input class="form-control" id="payment-card-security-code" type="text" style="width: 85%;display: inline;margin-bottom: 15px;" value="{{ payment_card.security_code }}" readonly>
+                    <a onclick="copyToClipBoard('payment-card-security-code');" class="payment-card-a" style="background: rgba(255,255,255,0);text-align: center;font-weight: bold;font-size: 15px;padding: 12.5px;color: #000000;border: 0.3px solid #cccccc ;">Copy</a>
+
+                    <label class="form-label" style="font-weight: bold;display: block;">Start date</label>
+                    <input class="form-control" id="payment-card-start-date" type="text" style="width: 85%;display: inline;margin-bottom: 15px;" value="{{ payment_card.start_date }}" readonly>
+                    <a onclick="copyToClipBoard('payment-card-start-date');" class="payment-card-a" style="background: rgba(255,255,255,0);text-align: center;font-weight: bold;font-size: 15px;padding: 12.5px;color: #000000;border: 0.3px solid #cccccc ;">Copy</a>
+
+                    <label class="form-label" style="font-weight: bold;display: block;">Expiration date</label>
+                    <input class="form-control" id="payment-card-expiration-date" type="text" style="width: 85%;display: inline;margin-bottom: 15px;" value="{{ payment_card.expiration_date }}" readonly>
+                    <a onclick="copyToClipBoard('payment-card-expiration-date');" class="payment-card-a" style="background: rgba(255,255,255,0);text-align: center;font-weight: bold;font-size: 15px;padding: 12.5px;color: #000000;border: 0.3px solid #cccccc ;">Copy</a>
+
+
+            
+                {% elif bank_account %}
+
+                    <label class="form-label" style="font-weight: bold;display: block;">Name</label>
+                    <input class="form-control" id="bank-account-name" type="text" style="width: 85%;display: inline;margin-bottom: 15px;" value="{{ bank_account.name }}" readonly>
+                    <a onclick="copyToClipBoard('bank-account-name');" class="bank-account-a" style="background: rgba(255,255,255,0);text-align: center;font-weight: bold;font-size: 15px;padding: 12.5px;color: #000000;border: 0.3px solid #cccccc ;">Copy</a>
+
+                    <label class="form-label" style="font-weight: bold;display: block;">Bank name</label>
+                    <input class="form-control" id="bank-account-bank-name" type="text" style="width: 85%;display: inline;margin-bottom: 15px;" value="{{ bank_account.bank_name }}" readonly>
+                    <a onclick="copyToClipBoard('bank-account-bank-name');" class="bank-account-a" style="background: rgba(255,255,255,0);text-align: center;font-weight: bold;font-size: 15px;padding: 12.5px;color: #000000;border: 0.3px solid #cccccc ;">Copy</a>
+
+                    <label class="form-label" style="font-weight: bold;display: block;">Account type</label>
+                    <input class="form-control" id="bank-account-account-type" type="text" style="width: 85%;display: inline;margin-bottom: 15px;" value="{{ bank_account.account_type }}" readonly>
+                    <a onclick="copyToClipBoard('bank-account-account-type');" class="bank-account-a" style="background: rgba(255,255,255,0);text-align: center;font-weight: bold;font-size: 15px;padding: 12.5px;color: #000000;border: 0.3px solid #cccccc ;">Copy</a>
+            
+                    <label class="form-label" style="font-weight: bold;display: block;">Routing name</label>
+                    <input class="form-control" id="bank-account-routing-name" type="text" style="width: 85%;display: inline;margin-bottom: 15px;" value="{{ bank_account.routing_name }}" readonly>
+                    <a onclick="copyToClipBoard('bank-account-routing-name');" class="bank-account-a" style="background: rgba(255,255,255,0);text-align: center;font-weight: bold;font-size: 15px;padding: 12.5px;color: #000000;border: 0.3px solid #cccccc ;">Copy</a>
+
+                    <label class="form-label" style="font-weight: bold;display: block;">Account number</label>
+                    <input class="form-control" id="bank-account-account-number" type="text" style="width: 85%;display: inline;margin-bottom: 15px;" value="{{ bank_account.account_number }}" readonly>
+                    <a onclick="copyToClipBoard('bank-account-account-number');" class="bank-account-a" style="background: rgba(255,255,255,0);text-align: center;font-weight: bold;font-size: 15px;padding: 12.5px;color: #000000;border: 0.3px solid #cccccc ;">Copy</a>
+
+                    <label class="form-label" style="font-weight: bold;display: block;">SWIFT Code</label>
+                    <input class="form-control" id="bank-account-swift-code" type="text" style="width: 85%;display: inline;margin-bottom: 15px;" value="{{ bank_account.swift_code }}" readonly>
+                    <a onclick="copyToClipBoard('bank-account-swift-code');" class="bank-account-a" style="background: rgba(255,255,255,0);text-align: center;font-weight: bold;font-size: 15px;padding: 12.5px;color: #000000;border: 0.3px solid #cccccc ;">Copy</a>
+
+                    <label class="form-label" style="font-weight: bold;display: block;">Iban number</label>
+                    <input class="form-control" id="bank-account-iban-number" type="text" style="width: 85%;display: inline;margin-bottom: 15px;" value="{{ bank_account.iban_number }}" readonly>
+                    <a onclick="copyToClipBoard('bank-account-iban-number');" class="bank-account-a" style="background: rgba(255,255,255,0);text-align: center;font-weight: bold;font-size: 15px;padding: 12.5px;color: #000000;border: 0.3px solid #cccccc ;">Copy</a>
+
+                    <label class="form-label" style="font-weight: bold;display: block;">PIN</label>
+                    <input class="form-control" id="bank-account-pin" type="text" style="width: 85%;display: inline;margin-bottom: 15px;" value="{{ bank_account.pin }}" readonly>
+                    <a onclick="copyToClipBoard('bank-account-pin');" class="bank-account-a" style="background: rgba(255,255,255,0);text-align: center;font-weight: bold;font-size: 15px;padding: 12.5px;color: #000000;border: 0.3px solid #cccccc ;">Copy</a>
+
+                    <label class="form-label" style="font-weight: bold;display: block;">Branch address</label>
+                    <input class="form-control" id="bank-account-branch-address" type="text" style="width: 85%;display: inline;margin-bottom: 15px;" value="{{ bank_account.branch_address }}" readonly>
+                    <a onclick="copyToClipBoard('bank-account-branch-address');" class="bank-account-a" style="background: rgba(255,255,255,0);text-align: center;font-weight: bold;font-size: 15px;padding: 12.5px;color: #000000;border: 0.3px solid #cccccc ;">Copy</a>
+
+                    <label class="form-label" style="font-weight: bold;display: block;">Branch phone</label>
+                    <input class="form-control" id="bank-account-branch-phone" type="text" style="width: 85%;display: inline;margin-bottom: 15px;" value="{{ bank_account.branch_phone }}" readonly>
+                    <a onclick="copyToClipBoard('bank-account-branch-phone');" class="bank-account-a" style="background: rgba(255,255,255,0);text-align: center;font-weight: bold;font-size: 15px;padding: 12.5px;color: #000000;border: 0.3px solid #cccccc ;">Copy</a>
+
+                {% else %}
+            
+                    <p>Error: vuelva a intentarlo más tarde.</p>
+            
+                {% endif %}
+
+            </form>
+        </div>
+
+    </section>
+
+{% endblock %}
+
+
+{% block extend_footer %}
+
+    <script>
+
+        function copyToClipBoard(element) {
+            /* Get the text field */
+            var copyText = document.getElementById(element);
+        
+            /* Select the text field */
+            copyText.select();
+            copyText.setSelectionRange(0, 99999); /* For mobile devices */
+        
+            /* Copy the text inside the text field */
+            navigator.clipboard.writeText(copyText.value);
+            
+            /* Alert the copied text */
+            alert("Copied the text: " + copyText.value);
+        }
+
+    </script>
+
+{% endblock %}

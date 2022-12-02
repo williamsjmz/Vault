@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extend_head %}
+
+    <title>Bank Accounts</title>
+
+{% endblock %}
+
+{% block content %}
+
+  <h2 class="header" style="background-color: rgb(234, 71, 255);">Bank Accounts</h3>
+
+  <div class="container">
+    
+    <h4>Bank Accounts <a href="{% url 'vault:create_bank_account' %}"><img class="add-icon" src="{% static 'img/add-icon.png' %}" alt=""></a></h4>
+    {% if bank_accounts %}
+
+      <div class="cards-container">
+
+        {% for bank_account in bank_accounts %}
+
+            <div class="card" id="bank-account-card" style="width: 18rem; margin: 10px;">
+                <div class="card-img-container" id="bank-account-cap">
+                    <img class="card-img-top" src="{% static 'img/bank-account.png' %}" alt="Card image cap">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">{{  bank_account.name }}</h5>
+                </div>
+                <div class="card-body">
+                    <div class="card-link-container">
+                        <a href="{% url 'vault:detail_bank_account' bank_account.id %}" class="link-container card-view-btn card-link">View</a>
+                        <a href="{% url 'vault:update_bank_account' bank_account.id %}" class="link-container card-edit-btn card-link">Edit</a>
+                        <a href="{% url 'vault:delete_bank_account' bank_account.id %}" class="link-container card-delete-btn card-link">Delete</a>
+                    </div>
+                </div>
+            </div>
+
+        {% endfor %}
+    
+      </div>
+
+    {% else %}
+        <p>You have not registered bank accounts</p>
+    {% endif %}
+
+  </div>
+
+{% endblock %}
+
+{% block extend_footer %}
+    <script type="text/javascript">
+
+        let hoveredSrc = "{% static 'img/add-icon-hovered.png' %}";
+        let unhoveredSrc = "{% static 'img/add-icon.png' %}";
+
+    </script>
+
+    <script type="text/javascript" src="{% static 'toggle_add_icon.js' %}"></script>
+{% endblock %}
