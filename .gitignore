@@ -1,1 +1,15 @@
+# Environments
 .env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Migrations and cache
+*.log
+*.pot
+*.pyc
+__pycache__/
+migrations/__pycache__/*
